@@ -1,0 +1,46 @@
+# Entorno virtual
+venv/
+env/
+ENV/
+.venv
+
+# Directorios de la aplicación
+uploads/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de desarrollo
+*.log
+.env
+*.pid
+
+# Compilados
+*.egg-info/
+dist/
+build/
+
+# Flask
+instance/
+.webassets-cache
+
+# Pytest
+.pytest_cache/
+.coverage
+
+# Datos
+data/
+output/

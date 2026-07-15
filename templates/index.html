@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Colmenas - Generador de Etiquetas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>🐝 QR Colmenas</h1>
+                <p class="subtitle">Generador de Etiquetas para Impresoras Zebra</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Sección de carga -->
+            <section class="card" id="upload-section">
+                <h2>Paso 1: Cargar Archivo Excel</h2>
+                <div class="upload-area" id="uploadArea">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p class="upload-text">
+                        <strong>Arrastra tu archivo Excel aquí</strong><br>
+                        o haz clic para seleccionar
+                    </p>
+                    <input type="file" id="fileInput" accept=".xlsx,.xls" hidden>
+                </div>
+                <p class="helper-text">📋 El archivo debe contener las columnas: CODIGO y CODIGO-DNI</p>
+            </section>
+
+            <!-- Sección de preview -->
+            <section class="card hidden" id="preview-section">
+                <h2>Paso 2: Previsualizar Datos</h2>
+                <div class="preview-info">
+                    <p class="file-name">📄 <strong id="fileName">-</strong></p>
+                    <p class="total-records">Total de registros: <strong id="totalRecords">0</strong></p>
+                </div>
+                
+                <div class="table-wrapper">
+                    <table class="preview-table" id="previewTable">
+                        <thead>
+                            <tr id="tableHeader"></tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" id="changeFileBtn">← Cambiar archivo</button>
+                    <button class="btn btn-primary" id="generateBtn">Generar Etiquetas →</button>
+                </div>
+            </section>
+
+            <!-- Sección de generación -->
+            <section class="card hidden" id="generation-section">
+                <h2>Paso 3: Generar y Enviar a Imprimir</h2>
+                
+                <div class="generation-info">
+                    <p class="success-message">✓ Etiquetas generadas correctamente</p>
+                    <p class="quantity">Se generaron <strong id="quantity">0</strong> etiquetas</p>
+                </div>
+
+                <div class="zpl-preview">
+                    <h3>Preview ZPL:</h3>
+                    <pre id="zplPreview"></pre>
+                </div>
+
+                <!-- Selector de impresora -->
+                <div class="printer-selector hidden" id="printerSection">
+                    <label for="printerSelect">Selecciona una impresora:</label>
+                    <select id="printerSelect">
+                        <option value="">Impresora predeterminada</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" id="newFileBtn">← Nuevo archivo</button>
+                    <button class="btn btn-download" id="downloadBtn">⬇ Descargar ZPL</button>
+                    <button class="btn btn-success" id="printBtn">🖨 Enviar a Imprimir</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Toast de notificaciones -->
+        <div class="toast hidden" id="toast">
+            <p id="toastMessage"></p>
+            <button class="toast-close" onclick="document.getElementById('toast').classList.add('hidden')">✕</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>QR Colmenas v1.0 | Impresoras Zebra ZT230 | 
+           <a href="https://github.com/tuusuario/QR-Colmenas-Web" target="_blank">GitHub</a>
+        </p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
